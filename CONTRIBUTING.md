@@ -1,14 +1,15 @@
 # Contributing
 
-Thanks for considering a contribution to Aesir.
+Thanks for considering a contribution to Aesir OSS.
 
-## Before you start
+## Working principles
 
-- read the README for project scope and setup
-- search existing issues before opening a new one
-- prefer focused pull requests over large mixed changes
+- keep Hermes discovery generic and local-first
+- prefer small, testable changes over broad rewrites
+- avoid assumptions about personal profiles, paths, or provider setups
+- document behavior changes when they affect setup, packaging, or runtime modes
 
-## Local setup
+## Setup
 
 ```bash
 npm install
@@ -29,26 +30,29 @@ Build the desktop bundle:
 npm run desktop:bundle
 ```
 
-## What makes a good contribution
-
-- fixes a clear bug or improves a concrete workflow
-- keeps Hermes discovery generic and local-first
-- includes tests for non-trivial behavior changes
-- updates docs when behavior or setup changes
-
 ## Pull request checklist
 
 - keep the change scoped
 - explain the user-facing impact
 - include validation steps
-- attach screenshots for UI work when helpful
+- add or update tests for non-trivial behavior
+- attach screenshots for UI work when useful
 
-## Areas where contributions are especially welcome
+## Issue labels
 
-- install and onboarding edge cases
-- Hermes profile discovery and transcript import
-- Electron packaging and release automation
-- tests, docs, and contributor experience
+The project label set is defined in `.github/labels.yml`.
+
+Recommended starter issues for new contributors:
+
+- `good first issue`
+- `documentation`
+- `tests`
+- `packaging`
+
+## Release notes
+
+If your change is notable, add a short line to the `Unreleased` section of
+[CHANGELOG.md](CHANGELOG.md).
 
 ## Community expectations
 

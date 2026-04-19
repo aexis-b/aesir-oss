@@ -5,6 +5,10 @@
   "description": "A local-first desktop shell for Hermes profiles, sessions, and transcript history.",
   "author": "Aesir contributors",
   "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "packageManager": "npm@10",
   "keywords": [
     "hermes",
     "electron",

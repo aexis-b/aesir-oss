@@ -1,0 +1,36 @@
+- name: bug
+  color: "d73a4a"
+  description: Something is broken or behaving incorrectly
+- name: enhancement
+  color: "a2eeef"
+  description: Improvements to existing behavior
+- name: feature
+  color: "1d76db"
+  description: New capability or user-facing addition
+- name: documentation
+  color: "0075ca"
+  description: Docs, examples, and contributor guidance
+- name: tests
+  color: "5319e7"
+  description: Test coverage or test infrastructure work
+- name: packaging
+  color: "fbca04"
+  description: Desktop packaging, release, or distribution work
+- name: ci
+  color: "0e8a16"
+  description: Continuous integration or workflow automation
+- name: dependencies
+  color: "0366d6"
+  description: Dependency updates or ecosystem maintenance
+- name: security
+  color: "b60205"
+  description: Security-sensitive work
+- name: good first issue
+  color: "7057ff"
+  description: A good entry point for new contributors
+- name: help wanted
+  color: "008672"
+  description: Extra attention from contributors is welcome
+- name: needs reproduction
+  color: "f9d0c4"
+  description: More detail is needed before work can start

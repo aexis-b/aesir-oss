@@ -16,8 +16,12 @@ const mondwest = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Aesir OSS",
-  description: "A local-first desktop shell for Hermes profiles and sessions.",
+  title: {
+    default: "Aesir OSS",
+    template: "%s | Aesir OSS",
+  },
+  description: "A local-first desktop shell for Hermes profiles, sessions, and transcript history.",
+  applicationName: "Aesir OSS",
 };
 
 export default function RootLayout({
