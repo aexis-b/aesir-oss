@@ -1,0 +1,1094 @@
+.app {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  min-width: 0;
+  min-height: 100dvh;
+  height: 100dvh;
+  padding: 10px;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 0;
+}
+
+.desktopChrome {
+  display: none;
+  height: 0;
+}
+
+.desktopChromeSpacer,
+.desktopChromeDrag {
+  height: 100%;
+}
+
+.desktopChromeSpacer {
+  -webkit-app-region: no-drag;
+}
+
+.desktopChromeDrag {
+  -webkit-app-region: drag;
+}
+
+:global(html[data-shell="desktop"]) .app {
+  padding-top: 10px;
+}
+
+:global(html[data-shell="desktop"]) .desktopChrome {
+  display: grid;
+  grid-template-columns: 74px minmax(0, 1fr);
+  align-items: stretch;
+  height: 24px;
+}
+
+.window {
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 240px 320px minmax(0, 1fr);
+  gap: 0;
+  border: 1px solid color-mix(in srgb, var(--agent-accent) 20%, var(--line-strong));
+  background: color-mix(in srgb, var(--agent-accent) 2%, var(--window));
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.bootShell {
+  width: 100%;
+  min-height: calc(100dvh - 20px);
+  border: 1px solid color-mix(in srgb, var(--agent-accent) 14%, var(--line));
+  background: color-mix(in srgb, var(--agent-accent) 2%, var(--window));
+  box-shadow: var(--shadow);
+  display: grid;
+  place-items: center;
+  padding: 28px;
+}
+
+.bootCopy {
+  display: grid;
+  gap: 10px;
+  justify-items: center;
+  text-align: center;
+}
+
+.bootMark {
+  font-size: 18px;
+  color: var(--agent-accent);
+  margin-bottom: 12px;
+}
+
+.bootTitle {
+  font-family: var(--font-mondwest), serif;
+  font-size: clamp(40px, 8vw, 88px);
+  line-height: 0.94;
+  letter-spacing: -0.03em;
+}
+
+.bootDescription {
+  max-width: 38rem;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.bootStatus {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 8px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.bootSpinner {
+  display: inline-flex;
+  width: 1.25em;
+  justify-content: center;
+  color: var(--agent-accent);
+}
+
+.bootActions {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.bootFacts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+}
+
+.bootFacts span {
+  padding: 2px 6px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 11px;
+}
+
+@keyframes bootPulse {
+  0% {
+    transform: scale(0.9);
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--agent-accent) 40%, transparent);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px color-mix(in srgb, var(--agent-accent) 0%, transparent);
+  }
+  100% {
+    transform: scale(0.9);
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--agent-accent) 0%, transparent);
+  }
+}
+
+.sidebar,
+.threadPane,
+.chatPane {
+  min-height: 0;
+}
+
+.sidebar,
+.threadPane {
+  border-right: 1px solid color-mix(in srgb, var(--agent-accent) 12%, var(--line));
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background: color-mix(in srgb, var(--agent-accent) 4%, var(--panel-soft));
+}
+
+.sidebarHeader,
+.threadToolbar,
+.chatHeader,
+.composer {
+  flex-shrink: 0;
+}
+
+.sidebarHeader {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 14px;
+  border-bottom: 1px solid color-mix(in srgb, var(--agent-accent) 12%, var(--line));
+}
+
+.brand {
+  font-family: var(--font-mondwest), serif;
+  font-size: 14px;
+}
+
+.agentList {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.agentButton,
+.threadButton,
+.primaryButton,
+.ghostButton,
+.commandRow,
+.sendButton,
+.groupToggle,
+.threadActionButton {
+  appearance: none;
+  border: 1px solid transparent;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+}
+
+.agentButton {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  padding: 10px;
+  border-color: color-mix(in srgb, var(--agent-accent) 10%, var(--line));
+  background: color-mix(in srgb, var(--agent-accent) 4%, var(--surface));
+  text-align: left;
+}
+
+.agentButtonActive {
+  border-color: color-mix(in srgb, var(--agent-accent) 48%, var(--line-strong));
+  background: color-mix(in srgb, var(--agent-accent) 10%, var(--surface));
+}
+
+.agentMain {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.agentIconWrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  color: var(--agent-accent);
+  flex-shrink: 0;
+}
+
+.agentCopy {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.agentName,
+.chatName,
+.threadTitle,
+.commandName {
+  font-family: var(--font-mondwest), serif;
+  font-size: 14px;
+  line-height: 1.1;
+}
+
+.agentTagline,
+.agentMeta,
+.threadPreview,
+.threadMeta,
+.threadTime,
+.profileMeta,
+.chatDescription,
+.chatMeta,
+.messageMeta,
+.composerMeta,
+.statusLine,
+.statusKey,
+.commandArgs,
+.commandDescription,
+.commandNotice,
+.error,
+.placeholder,
+.shortcutBadge,
+.countBadge {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.shortcutBadge {
+  opacity: .5;
+}
+
+.agentMeta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.shortcutBadge,
+.countBadge,
+.threadMeta,
+.profileMeta span,
+.chatMeta,
+.composerMeta,
+.statusLine,
+.messageMeta,
+.threadTime {
+  padding: 2px 6px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.threadPane {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background: color-mix(in srgb, var(--agent-accent) 3%, var(--panel));
+}
+
+.threadToolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px;
+  border-bottom: 1px solid color-mix(in srgb, var(--agent-accent) 12%, var(--line));
+}
+
+.threadToolbarRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.themeButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.primaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 0 12px;
+  border-color: color-mix(in srgb, var(--agent-accent) 18%, var(--line-strong));
+  background: color-mix(in srgb, var(--agent-accent) 5%, var(--surface));
+}
+
+.profileMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.threadList {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.loadingStack {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.loadingCard {
+  display: grid;
+  gap: 8px;
+  padding: 10px;
+  border: 1px solid color-mix(in srgb, var(--agent-accent) 10%, var(--line));
+  background: color-mix(in srgb, var(--agent-accent) 3%, var(--surface));
+}
+
+.loadingHeader {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.loadingSpinner {
+  display: inline-flex;
+  width: 1.25em;
+  justify-content: center;
+  color: var(--agent-accent);
+}
+
+.loadingLines {
+  display: grid;
+  gap: 6px;
+}
+
+.loadingLineLong,
+.loadingLineShort {
+  display: block;
+  height: 10px;
+  border: 1px solid color-mix(in srgb, var(--agent-accent) 8%, var(--line));
+  background: color-mix(in srgb, var(--agent-accent) 4%, var(--surface-strong));
+}
+
+.loadingLineLong {
+  width: 100%;
+}
+
+.loadingLineShort {
+  width: 62%;
+}
+
+.threadGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.groupToggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 30px;
+  padding: 0 10px;
+  border-color: color-mix(in srgb, var(--agent-accent) 10%, var(--line));
+  border-style: dashed;
+  background: color-mix(in srgb, var(--agent-accent) 3%, transparent);
+  color: var(--muted);
+}
+
+.groupToggleOpen {
+  border-color: color-mix(in srgb, var(--agent-accent) 22%, var(--line-strong));
+}
+
+.groupToggleLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.groupList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.threadCard {
+  position: relative;
+  isolation: isolate;
+}
+
+.threadButton {
+  width: 100%;
+  padding: 10px 40px 10px 10px;
+  border-color: color-mix(in srgb, var(--agent-accent) 10%, var(--line));
+  background: color-mix(in srgb, var(--agent-accent) 4%, var(--surface));
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.threadButtonActive {
+  border-color: color-mix(in srgb, var(--agent-accent) 26%, var(--line-strong));
+  background: color-mix(in srgb, var(--agent-accent) 8%, var(--surface-strong));
+}
+
+.threadButtonReadOnly {
+  border-style: dashed;
+  opacity: 0.5;
+}
+
+.threadButtonReadOnly.threadButtonActive {
+  opacity: 0.64;
+}
+
+.threadActionButton {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border: 1px solid color-mix(in srgb, var(--agent-accent) 16%, var(--line-strong));
+  background: color-mix(in srgb, var(--agent-accent) 5%, var(--surface-strong));
+  color: var(--muted);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(calc(-50% - 2px));
+  transition:
+    opacity 120ms ease,
+    transform 120ms ease,
+    border-color 120ms ease,
+    color 120ms ease;
+}
+
+.threadCard:hover .threadActionButton,
+.threadCard:focus-within .threadActionButton {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(-50%);
+}
+
+.threadActionButton:hover,
+.threadActionButton:focus-visible {
+  color: var(--text);
+  border-color: color-mix(in srgb, var(--agent-accent) 42%, var(--line-strong));
+  outline: none;
+}
+
+.threadTop {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.threadTitle {
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.threadTime {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-size: 11px;
+  line-height: 1.2;
+}
+
+.threadPreview {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.chatPane {
+  position: relative;
+  min-width: 0;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  background: color-mix(in srgb, var(--agent-accent) 3%, var(--panel));
+}
+
+.chatHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 44px;
+  padding: 0 14px;
+  border-bottom: 1px solid color-mix(in srgb, var(--agent-accent) 12%, var(--line));
+}
+
+.chatIdentity {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.activeIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  color: var(--agent-accent);
+  flex-shrink: 0;
+}
+
+.chatDescription {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.commandPalette {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 208px;
+  padding: 8px 10px;
+  border: 1px solid color-mix(in srgb, var(--agent-accent) 14%, var(--line));
+  background: color-mix(in srgb, var(--agent-accent) 3%, var(--surface));
+  overflow: hidden;
+}
+
+.commandPaletteMeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.2;
+}
+
+.commandList {
+  min-height: 0;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.commandRow {
+  padding: 6px 8px;
+  border-color: transparent;
+  background: transparent;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.commandRowActive {
+  border-color: color-mix(in srgb, var(--agent-accent) 22%, var(--line-strong));
+  background: color-mix(in srgb, var(--agent-accent) 6%, var(--surface));
+}
+
+.commandRowPrimary {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  min-width: 0;
+}
+
+.commandArgs {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.2;
+}
+
+.commandRow .commandName {
+  font-size: 12px;
+}
+
+.commandDescription {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.commandEmpty {
+  color: var(--muted);
+  padding: 4px 2px;
+}
+
+.commandCenterOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: color-mix(in srgb, var(--bg) 74%, transparent);
+  backdrop-filter: blur(6px);
+}
+
+.commandCenterModal {
+  width: min(780px, calc(100vw - 48px));
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid color-mix(in srgb, var(--agent-accent) 18%, var(--line-strong));
+  background: color-mix(in srgb, var(--agent-accent) 4%, var(--panel-strong));
+  box-shadow: var(--shadow);
+}
+
+.commandCenterHeader,
+.commandCenterFooter,
+.commandCenterRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.commandCenterTitle {
+  font-family: var(--font-mondwest), serif;
+  font-size: 16px;
+  line-height: 1.1;
+}
+
+.commandCenterSelectorWrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.commandCenterSelector,
+.commandCenterMenuItem {
+  appearance: none;
+  border: 1px solid color-mix(in srgb, var(--agent-accent) 12%, var(--line));
+  background: color-mix(in srgb, var(--agent-accent) 3%, var(--surface));
+  color: inherit;
+  font: inherit;
+}
+
+.commandCenterSelector {
+  min-width: 160px;
+  min-height: 38px;
+  padding: 0 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.commandCenterSelectorMain {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.commandCenterMenu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 6px;
+  border: 1px solid color-mix(in srgb, var(--agent-accent) 18%, var(--line-strong));
+  background: color-mix(in srgb, var(--agent-accent) 3%, var(--panel));
+  box-shadow: var(--shadow);
+}
+
+.commandCenterMenuItem {
+  width: 100%;
+  min-height: 34px;
+  padding: 0 8px;
+  text-align: left;
+}
+
+.commandCenterMenuItemActive {
+  border-color: color-mix(in srgb, var(--agent-accent) 40%, var(--line-strong));
+  background: color-mix(in srgb, var(--agent-accent) 8%, var(--surface-strong));
+}
+
+.commandCenterInput {
+  flex: 1;
+  min-width: 0;
+  min-height: 38px;
+  padding: 0 12px;
+  border: 1px solid color-mix(in srgb, var(--agent-accent) 16%, var(--line-strong));
+  background: color-mix(in srgb, var(--agent-accent) 2%, var(--field));
+  color: var(--text);
+  outline: none;
+  font: inherit;
+}
+
+.commandCenterMeta {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.commandCenterActions {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.feed {
+  min-height: 0;
+  overflow: auto;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.message {
+  max-width: min(720px, 100%);
+  padding: 10px;
+  border: 1px solid color-mix(in srgb, var(--agent-accent) 10%, var(--line));
+  background: color-mix(in srgb, var(--agent-accent) 2%, var(--surface));
+}
+
+.messageAssistant {
+  border-left-color: var(--message-accent);
+  border-left-width: 2px;
+}
+
+.messageUser {
+  align-self: flex-end;
+  background: var(--surface-strong);
+}
+
+.messagePending {
+  border-style: dashed;
+  opacity: 0.8;
+}
+
+.messageMeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.messageSpeaker {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+ .messageBody {
+  white-space: pre-wrap;
+ }
+
+ .traceCard {
+  max-width: min(720px, 100%);
+  padding: 10px;
+  border: 1px solid color-mix(in srgb, var(--agent-accent) 10%, var(--line));
+  background: color-mix(in srgb, var(--agent-accent) 3%, var(--surface));
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+ }
+
+.starterCard {
+  max-width: min(720px, 100%);
+  padding: 12px;
+  border: 1px solid color-mix(in srgb, var(--agent-accent) 12%, var(--line-strong));
+  background: color-mix(in srgb, var(--agent-accent) 3%, var(--surface));
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.starterHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  color: var(--muted);
+}
+
+.starterBody {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.starterBody p {
+  color: var(--muted);
+  white-space: pre-wrap;
+}
+
+.queueStack {
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  margin-top: auto;
+  padding-top: 6px;
+}
+
+.queueMiniCard {
+  width: min(440px, 100%);
+  padding: 8px 10px;
+  border: 1px dashed color-mix(in srgb, var(--agent-accent) 18%, var(--line-strong));
+  background: color-mix(in srgb, var(--agent-accent) 3%, var(--surface));
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.queueMiniMeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.2;
+}
+
+.queueMiniBody {
+  color: var(--text);
+  white-space: pre-wrap;
+}
+
+.traceCardRunning {
+  border-color: color-mix(in srgb, var(--agent-accent) 48%, var(--line-strong));
+}
+
+.traceCardComplete {
+  border-color: var(--line-strong);
+}
+
+.traceCardError {
+  border-color: rgba(255, 158, 158, 0.4);
+}
+
+.traceHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  color: var(--muted);
+}
+
+.traceLines {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.traceLines span {
+  color: var(--muted);
+}
+
+.composer {
+  padding: 10px 12px 12px;
+  border-top: 1px solid color-mix(in srgb, var(--agent-accent) 12%, var(--line));
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: color-mix(in srgb, var(--agent-accent) 3%, var(--panel-strong));
+}
+
+.composerBottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.composerActions {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ghostButton,
+.sendButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  padding: 0 10px;
+  border-color: color-mix(in srgb, var(--agent-accent) 10%, var(--line));
+  background: color-mix(in srgb, var(--agent-accent) 4%, var(--surface));
+}
+
+.statusBar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.statusItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 24px;
+  padding: 2px 6px;
+  border: 1px solid color-mix(in srgb, var(--agent-accent) 10%, var(--line));
+  background: color-mix(in srgb, var(--agent-accent) 3%, var(--surface));
+  min-width: 0;
+}
+
+.statusKey {
+  flex-shrink: 0;
+}
+
+.statusValue {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.input {
+  width: 100%;
+  min-height: 72px;
+  padding: 10px;
+  border: 1px solid color-mix(in srgb, var(--agent-accent) 16%, var(--line-strong));
+  background: color-mix(in srgb, var(--agent-accent) 2%, var(--field));
+  color: var(--text);
+  outline: none;
+}
+
+.input:focus {
+  border-color: color-mix(in srgb, var(--agent-accent) 48%, var(--line-strong));
+}
+
+.input:disabled {
+  opacity: 0.68;
+  cursor: not-allowed;
+}
+
+.placeholder {
+  min-height: 100%;
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+
+.error {
+  color: #ff9e9e;
+}
+
+.commandNotice {
+  color: var(--muted);
+}
+
+.agentButton:hover,
+.threadButton:hover,
+.primaryButton:hover,
+.ghostButton:hover,
+.commandRow:hover,
+.sendButton:hover,
+.groupToggle:hover,
+.commandCenterSelector:hover,
+.commandCenterMenuItem:hover {
+  border-color: color-mix(in srgb, var(--agent-accent) 40%, var(--line-strong));
+}
+
+.agentButton:focus-visible,
+.threadButton:focus-visible,
+.primaryButton:focus-visible,
+.ghostButton:focus-visible,
+.commandRow:focus-visible,
+.sendButton:focus-visible,
+.groupToggle:focus-visible,
+.commandCenterSelector:focus-visible,
+.commandCenterMenuItem:focus-visible,
+.commandCenterInput:focus-visible,
+.input:focus-visible {
+  outline: none;
+  border-color: color-mix(in srgb, var(--agent-accent) 52%, var(--line-strong));
+}
+
+@media (max-width: 1080px) {
+  .window {
+    grid-template-columns: 220px 280px minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .app {
+    height: auto;
+    padding: 0;
+  }
+
+  .window {
+    height: auto;
+    min-height: 100dvh;
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar,
+  .threadPane {
+    border-right: 0;
+    border-bottom: 1px solid color-mix(in srgb, var(--agent-accent) 12%, var(--line));
+  }
+
+  .agentList,
+  .threadList {
+    max-height: 220px;
+  }
+
+
+  .threadToolbarRow,
+  .composerBottom,
+  .commandCenterRow,
+  .commandCenterFooter {
+    flex-wrap: wrap;
+  }
+}

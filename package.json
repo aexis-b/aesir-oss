@@ -1,0 +1,69 @@
+{
+  "name": "aesir-oss",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A local-first desktop shell for Hermes profiles, sessions, and transcript history.",
+  "author": "Aesir contributors",
+  "license": "MIT",
+  "keywords": [
+    "hermes",
+    "electron",
+    "nextjs",
+    "desktop",
+    "local-first"
+  ],
+  "main": "electron/main.cjs",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "build:desktop": "npm run build && node electron/scripts/prepare-desktop.mjs",
+    "start": "HOSTNAME=127.0.0.1 node .next/standalone/server.js",
+    "lint": "eslint",
+    "test": "vitest run",
+    "desktop": "npm run build:desktop && electron .",
+    "desktop:bundle": "npm run build:desktop && electron-builder --mac dir",
+    "desktop:dist": "npm run build:desktop && electron-builder --mac dmg"
+  },
+  "dependencies": {
+    "@fontsource/ibm-plex-mono": "^5.2.7",
+    "@phosphor-icons/react": "^2.1.10",
+    "next": "16.2.3",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "unicode-animations": "^1.0.3",
+    "yaml": "^2.8.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "electron": "^41.2.0",
+    "electron-builder": "^26.8.1",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.3",
+    "playwright": "^1.59.1",
+    "typescript": "^5",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^3.2.4"
+  },
+  "build": {
+    "appId": "io.aesir.oss",
+    "productName": "Aesir OSS",
+    "directories": {
+      "buildResources": "build",
+      "output": "desktop-dist"
+    },
+    "asar": false,
+    "files": [
+      "electron/**/*",
+      "dist-electron/**/*",
+      "package.json"
+    ],
+    "mac": {
+      "artifactName": "Aesir-OSS-${version}-${arch}.${ext}",
+      "category": "public.app-category.productivity",
+      "icon": "build/icon.icon",
+      "identity": null
+    }
+  }
+}
