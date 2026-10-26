@@ -38,7 +38,7 @@
     "yaml": "^2.8.3"
   },
   "devDependencies": {
-    "@types/node": "^20",
+    "@types/node": "^26",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "electron": "^41.2.0",
